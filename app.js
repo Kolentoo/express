@@ -4,11 +4,43 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var axios = require('axios');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+app.get('/astro/all',(req,res)=>{
+  let url = 'http://api.jisuapi.com/astro/all'
+  let arr1
+  axios.get(url).then(json=>{
+    arr1 = json.data
+  }).then(()=>{
+    res.json(arr1)
+  })
+})
+
+app.get('/weather/query',(req,res)=>{
+  let url = 'http://api.jisuapi.com/weather/query'
+  let arr2
+  axios.get(url).then(json=>{
+    arr2 = json.data
+  }).then(()=>{
+    res.json(arr2)
+  })
+})
+
+app.get('/movie/detail.api?locationId=290',(req,res)=>{
+  let url = 'http://api-m.mtime.cn/movie/detail.api?locationId=290'
+  let arr3
+  axios.get(url).then(json=>{
+    arr3 = json.data
+  }).then(()=>{
+    res.json(arr3)
+  })
+})
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
