@@ -115,6 +115,17 @@ app.get('/api/data/Android/10/:pages',(req,res)=>{
   })
 })
 
+app.get('/api/timeline_v2_global',(req,res)=>{
+  let url = `https://bangumi.bilibili.com/api/timeline_v2_global` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
