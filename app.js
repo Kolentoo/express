@@ -116,6 +116,10 @@ app.get('/api/data/Android/10/:pages',(req,res)=>{
 })
 
 app.get('/api/timeline_v2_global',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let url = `https://bangumi.bilibili.com/api/timeline_v2_global` 
   let arr4
   axios.get(url,{
