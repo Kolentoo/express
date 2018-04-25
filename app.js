@@ -344,14 +344,15 @@ app.get('/v2/movie/subject/:mid',(req,res)=>{
   })
 })
 
-// 动漫最新
-app.get('/api/timeline_v2_global',(req,res)=>{
+
+// 热门动画
+app.get('/anime/hot',(req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://bangumi.bilibili.com/api/timeline_v2_global` 
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%83%AD%E9%97%A8&sort=time&page_limit=20&page_start=0` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -361,14 +362,14 @@ app.get('/api/timeline_v2_global',(req,res)=>{
   })
 })
 
-// 新番排行
-app.get('/api/season/rank',(req,res)=>{
+// 最新动画
+app.get('/anime/new',(req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://bangumi.bilibili.com/api/season/rank/list?day=3&season_type=1` 
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%97%A5%E6%9C%AC%E5%8A%A8%E7%94%BB&sort=time&page_limit=20&page_start=0` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -378,14 +379,14 @@ app.get('/api/season/rank',(req,res)=>{
   })
 })
 
-// 追番排行
-app.get('/web-interface/ranking',(req,res)=>{
+// 动画最高评价
+app.get('/anime/nice',(req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://bangumi.bilibili.com/web_api/season/index_global?page=1&page_size=20&version=0&is_finish=0&start_year=0&tag_id=&index_type=1&index_sort=0&quarter=0` 
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%97%A5%E6%9C%AC%E5%8A%A8%E7%94%BB&sort=rank&page_limit=20&page_start=0` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -395,14 +396,14 @@ app.get('/web-interface/ranking',(req,res)=>{
   })
 })
 
-// 国内排行
-app.get('/ranking/china',(req,res)=>{
+// 热门最新
+app.get('/hottv/new',(req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://bangumi.bilibili.com/api/season/rank/list?day=3&season_type=4` 
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%83%AD%E9%97%A8&sort=time&page_limit=20&page_start=0` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -411,6 +412,401 @@ app.get('/ranking/china',(req,res)=>{
     res.json(arr4)
   })
 })
+
+// 热门最热
+app.get('/hottv/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 热门最好
+app.get('/hottv/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%83%AD%E9%97%A8&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 美剧最新
+app.get('/america/new',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%BE%8E%E5%89%A7&sort=time&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 美剧最热
+app.get('/america/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%BE%8E%E5%89%A7&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 美剧最好
+app.get('/america/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%BE%8E%E5%89%A7&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 英剧最新
+app.get('/england/new',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E8%8B%B1%E5%89%A7&sort=time&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 英剧最热
+app.get('/england/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E8%8B%B1%E5%89%A7&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 英剧最好
+app.get('/england/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E8%8B%B1%E5%89%A7&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 韩剧最新
+app.get('/korea/new',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E9%9F%A9%E5%89%A7&sort=time&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 韩剧最热
+app.get('/korea/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E9%9F%A9%E5%89%A7&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 韩剧最好
+app.get('/korea/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E9%9F%A9%E5%89%A7&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 日剧最新
+app.get('/japan/new',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%97%A5%E5%89%A7&sort=time&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 日剧最热
+app.get('/japan/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%97%A5%E5%89%A7&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 日剧最好
+app.get('/japan/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%97%A5%E5%89%A7&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 国产最热
+app.get('/china/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E5%9B%BD%E4%BA%A7%E5%89%A7&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 国产最新
+app.get('/china/new',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E5%9B%BD%E4%BA%A7%E5%89%A7&sort=time&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 国产最好
+app.get('/china/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E5%9B%BD%E4%BA%A7%E5%89%A7&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 香港最热
+app.get('/hongkong/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%B8%AF%E5%89%A7&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 香港最新
+app.get('/hongkong/new',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%B8%AF%E5%89%A7&sort=time&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 香港最好
+app.get('/hongkong/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E6%B8%AF%E5%89%A7&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 综艺最热
+app.get('/variety/hot',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%BB%BC%E8%89%BA&sort=recommend&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 综艺最新
+app.get('/variety/new',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%BB%BC%E8%89%BA&sort=time&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 综艺最好
+app.get('/variety/nice',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%BB%BC%E8%89%BA&sort=rank&page_limit=20&page_start=0` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+
+
+
 
 
 
