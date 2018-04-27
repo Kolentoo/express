@@ -352,7 +352,7 @@ app.get('/anime/hot',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%83%AD%E9%97%A8&sort=time&page_limit=20&page_start=0` 
+  let url = `https://movie.douban.com/j/new_search_subjects?sort=T&range=0,10&tags=%E5%8A%A8%E7%94%BB&start=0` 
   let arr4
   axios.get(url,{
   }).then(json=>{
