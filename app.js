@@ -804,7 +804,22 @@ app.get('/variety/nice',(req,res)=>{
   })
 })
 
-
+// 人物详情
+app.get('/movie/person/:mid',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `http://api.douban.com/v2/movie/celebrity/${mid}` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
 
 
 
