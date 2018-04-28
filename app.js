@@ -821,6 +821,41 @@ app.get('/movie/person/:mid',(req,res)=>{
   })
 })
 
+// 电影搜索
+app.get('/search/:mid',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `http://api.douban.com/v2/movie/search?q=${mid}` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+// 2017年度电影
+app.get('/2017/:mid',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://movie.douban.com/ithil_j/activity/movie_annual2017/widget/${mid}` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+
 
 
 
