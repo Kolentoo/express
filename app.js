@@ -827,8 +827,9 @@ app.get('/search/:mid',(req,res)=>{
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
+  let mid = encodeURI(req.params.mid)
   let url = `http://api.douban.com/v2/movie/search?q=${mid}` 
+  console.log(url)
   let arr4
   axios.get(url,{
   }).then(json=>{
