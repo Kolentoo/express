@@ -1088,7 +1088,7 @@ app.get('/booksearch/:mid',(req,res)=>{
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
+  let mid = encodeURI(req.params.mid)
   let url = `https://api.douban.com/v2/book/search?q=${mid}` 
   let arr4
   axios.get(url,{
