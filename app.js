@@ -1116,7 +1116,22 @@ app.get('/booksearchwords/:mid',(req,res)=>{
   })
 })
 
-
+// 2017年度图书
+app.get('/books2017/:mid',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `https://book.douban.com/ithil_j/activity/book_annual2017/widget/${mid}` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
 
 
 
