@@ -1140,7 +1140,7 @@ app.get('/robots/:words',(req,res)=>{
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
+  let words = req.params.words
   let url = `http://api.qingyunke.com/api.php?key=free&appid=0&msg=${words}` 
   let arr4
   axios.get(url,{
