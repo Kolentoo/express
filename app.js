@@ -1141,7 +1141,7 @@ app.get('/robots/:words',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let words = req.params.words
-  let url = `http://apis.haoservice.com/efficient/robot?info=${words}address=&key=677a653cea6a40428ce9611d863e702c` 
+  let url = `http://apis.haoservice.com/efficient/robot?info=${words}&address=&key=677a653cea6a40428ce9611d863e702c` 
   let arr4
   axios.get(url,{
   }).then(json=>{
