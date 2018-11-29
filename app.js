@@ -1134,6 +1134,24 @@ app.get('/books2017/:mid',(req,res)=>{
 })
 
 
+// 聊天机器人
+app.get('/robots/:words',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let mid = req.params.mid
+  let url = `http://api.qingyunke.com/api.php?key=free&appid=0&msg=${words}` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
+
 
 
 
