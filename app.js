@@ -1134,7 +1134,7 @@ app.get('/books2017/:mid',(req,res)=>{
 })
 
 
-// 聊天机器人
+// 聊天机器人1号
 app.get('/robots/:words',(req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
@@ -1150,6 +1150,24 @@ app.get('/robots/:words',(req,res)=>{
     res.json(arr4)
   })
 })
+
+// 聊天机器人2号
+app.get('/robots2/:words',(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let words = req.params.words
+  let url = `http://i.itpk.cn/api.php?question=${words}` 
+  let arr4
+  axios.get(url,{
+  }).then(json=>{
+    arr4 = json.data
+  }).then(()=>{
+    res.json(arr4)
+  })
+})
+
 
 
 
