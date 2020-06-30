@@ -11,6 +11,7 @@ var users = require('./routes/users');
 
 var app = express();
 
+// 星座
 app.get('/astro/all',(req,res)=>{
   let url = 'http://api.jisuapi.com/astro/all?appkey=adfb0e1348ec0adf'
   let arr1
@@ -21,21 +22,7 @@ app.get('/astro/all',(req,res)=>{
   })
 })
 
-app.get('/weather/query/:city',(req,res)=>{
-  let city = req.params.city;
-  let url = 'http://api.jisuapi.com/weather/query?appkey=adfb0e1348ec0adf'
-  let arr2
-  axios.get(url,{
-    params:{
-      city:city
-    }
-  }).then(json=>{
-    arr2 = json.data
-  }).then(()=>{
-    res.json(arr2)
-  })
-})
-
+// 星座详情
 app.get('/astro/fortune/:astroid',(req,res)=>{
   let astroid = req.params.astroid;
   let url = 'http://api.jisuapi.com/astro/fortune?appkey=adfb0e1348ec0adf'
@@ -51,42 +38,22 @@ app.get('/astro/fortune/:astroid',(req,res)=>{
   })
 })
 
-app.get('/Movie/MovieComingNew.api',(req,res)=>{
-  let url = 'http://api-m.mtime.cn/Movie/MovieComingNew.api?locationId=290'
+// 天气城市
+app.get('/weather/query/:city',(req,res)=>{
+  let city = req.params.city;
+  let url = 'http://api.jisuapi.com/weather/query?appkey=adfb0e1348ec0adf'
   let arr2
-  axios.get(url,{
-  }).then(json=>{
-    arr2 = json.data
-  }).then(()=>{
-    res.json(arr2)
-  })
-})
-
-app.get('/PageSubArea/HotPlayMovies.api',(req,res)=>{
-  let url = 'http://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId=290'
-  let arr2
-  axios.get(url,{
-  }).then(json=>{
-    arr2 = json.data
-  }).then(()=>{
-    res.json(arr2)
-  })
-})
-
-app.get('/movie/detail.api/:movieId',(req,res)=>{
-  let url = 'http://api-m.mtime.cn/movie/detail.api?locationId=290'
-  let arr3
-  let movieId = req.params.movieId
   axios.get(url,{
     params:{
-      movieId:movieId
+      city:city
     }
   }).then(json=>{
-    arr3 = json.data
+    arr2 = json.data
   }).then(()=>{
-    res.json(arr3)
+    res.json(arr2)
   })
 })
+
 
 app.get('/v4/discovery/hot/:num',(req,res)=>{
   let url = 'http://baobab.kaiyanapp.com/api/v4/discovery/hot'
@@ -266,7 +233,7 @@ app.get('/v2/movie/in_theaters',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://api.douban.com/v2/movie/in_theaters` 
+  let url = `https://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=20` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -283,7 +250,7 @@ app.get('/v2/movie/coming_soon',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://api.douban.com/v2/movie/coming_soon` 
+  let url = `https://api.douban.com/v2/movie/coming_soon?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=20` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -300,7 +267,7 @@ app.get('/v2/movie/top250',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://api.douban.com/v2/movie/top250` 
+  let url = `https://api.douban.com/v2/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -317,7 +284,7 @@ app.get('/v2/movie/us_box',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://api.douban.com/v2/movie/us_box` 
+  let url = `https://api.douban.com/v2/movie/us_box?apikey=0df993c66c0c636e29ecbb5344252a4a` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -334,7 +301,7 @@ app.get('/v2/movie/subject/:mid',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `https://api.douban.com/v2/movie/subject/${mid}` 
+  let url = `https://api.douban.com/v2/movie/subject/${mid}?apikey=0df993c66c0c636e29ecbb5344252a4a` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -811,7 +778,7 @@ app.get('/movie/person/:mid',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = req.params.mid
-  let url = `http://api.douban.com/v2/movie/celebrity/${mid}` 
+  let url = `http://api.douban.com/v2/movie/celebrity/${mid}&apikey=0df993c66c0c636e29ecbb5344252a4a` 
   let arr4
   axios.get(url,{
   }).then(json=>{
@@ -828,7 +795,7 @@ app.get('/search/:mid',(req,res)=>{
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   let mid = encodeURI(req.params.mid)
-  let url = `http://api.douban.com/v2/movie/search?q=${mid}` 
+  let url = `http://api.douban.com/v2/movie/search?q=${mid}&apikey=0df993c66c0c636e29ecbb5344252a4a` 
   console.log(url)
   let arr4
   axios.get(url,{
@@ -839,317 +806,6 @@ app.get('/search/:mid',(req,res)=>{
   })
 })
 
-// 2017年度电影
-app.get('/2017/:mid',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://movie.douban.com/ithil_j/activity/movie_annual2017/widget/${mid}` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-
-// 虚构类最热
-app.get('/book/first',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/book_fiction/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 小说
-app.get('/book/novel',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_fiction_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 爱情
-app.get('/book/love',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_love_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 青春
-app.get('/book/youth',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_youth_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 推理
-app.get('/book/reasoning',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_detective_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 奇幻
-app.get('/book/amazing',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_fantasy_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 非虚构最热
-app.get('/book/second',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/book_nonfiction/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 历史
-app.get('/book/history',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_history_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 励志
-app.get('/book/improve',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_inspiration_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 传记
-app.get('/book/biography',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_biography_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 旅行
-app.get('/book/travel',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_travel_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 经营
-app.get('/book/manage',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://m.douban.com/rexxar/api/v2/subject_collection/filter_book_economic_hot/items?os=ios&for_mobile=1&callback=jsonp1&start=0&count=18&loc_id=0&_=0` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-
-
-
-
-// 图书详情
-app.get('/book/:mid',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://api.douban.com/v2/book/${mid}` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 图书搜索
-app.get('/booksearch/:mid',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = encodeURI(req.params.mid)
-  let url = `https://api.douban.com/v2/book/search?tag=${mid}` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 图书搜索
-app.get('/booksearchwords/:mid',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = encodeURI(req.params.mid)
-  let url = `https://api.douban.com/v2/book/search?q=${mid}` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-// 2017年度图书
-app.get('/books2017/:mid',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let mid = req.params.mid
-  let url = `https://book.douban.com/ithil_j/activity/book_annual2017/widget/${mid}` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
-
-
-// 聊天机器人1号
-app.get('/robots/:words',(req,res)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  let words = req.params.words
-  let url = `http://apis.haoservice.com/efficient/robot?info=${words}&address=&key=677a653cea6a40428ce9611d863e702c` 
-  let arr4
-  axios.get(url,{
-  }).then(json=>{
-    arr4 = json.data
-  }).then(()=>{
-    res.json(arr4)
-  })
-})
 
 // 聊天机器人2号
 app.get('/robots2/:words',(req,res)=>{
@@ -1167,10 +823,6 @@ app.get('/robots2/:words',(req,res)=>{
     res.json(arr4)
   })
 })
-
-
-
-
 
 
 
